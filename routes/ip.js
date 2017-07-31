@@ -5,21 +5,32 @@ const $ = require('cheerio');
 
 router.get('/:ip', function(req, res, next) {
     let ip = req.params.ip;
-    let matcher = /^(?:(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)\.){3}(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)$/;
-    if (!matcher.test(ip)) {
-        res.json({
-            err: 'ip invalid',
-            ip: ip
-        });
-        return;
+    if (ip == 'me') {
+        ip = req.ip;
+        if (ip == '::1') {
+            ip = '127.0.0.1';
+        }
+        let xip = req.headers['x-forwarded-for'];
+        if (xip) {
+            ip = xip.split(',')[0] || req.ip;
+        }
+    } else {
+        let matcher = /^(?:(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)\.){3}(?:2[0-4]\d|25[0-5]|1\d{2}|[1-9]?\d)$/;
+        if (!matcher.test(ip)) {
+            res.json({
+                err: 'ip invalid',
+                ip: ip
+            });
+            return;
+        }
     }
 
     ipipnet_location(ip).then((ipipnet_location) => {
-        ip138_location(ip).then((ip138_location)=>{
+        ip138_location(ip).then((ip138_location) => {
             res.json({
-                ip:ip,
-                ipipnet_location:ipipnet_location,
-                ip138_location:ip138_location
+                ip: ip,
+                ipipnet_location: ipipnet_location,
+                ip138_location: ip138_location
             });
         });
     });
@@ -50,34 +61,33 @@ function ipipnet_location(ip) {
 
 function ip138_location(ip) {
     let now_time = Date.now();
-    let qs ={
-        query:ip,
-        co:'',
-        resource_id:6006,
-        t:now_time,
-        ie:'utf8',
-        oe:'utf8',
-        cb:'op_aladdin_callback',
-        format:'json',
-        tn:'baidu',
-        cb:'jQuery110208921704571784295_'+now_time,
-        _:Date.now()
+    let qs = {
+        query: ip,
+        co: '',
+        resource_id: 6006,
+        t: now_time,
+        ie: 'utf8',
+        oe: 'utf8',
+        cb: 'op_aladdin_callback',
+        format: 'json',
+        tn: 'baidu',
+        cb: 'jQuery110208921704571784295_' + now_time,
+        _: Date.now()
     };
     let url = 'https://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php';
     return new Promise((resolve, reject) => {
         request.get({
-            url:url,
-            qs:qs,
-            encoding:'utf8'
-        },function(err,res,body){
+            url: url,
+            qs: qs,
+            encoding: 'utf8'
+        }, function(err, res, body) {
             if (!err && res.statusCode == 200) {
-                let result = JSON.parse(body.substring(5+qs.cb.length,body.length-2));
+                let result = JSON.parse(body.substring(5 + qs.cb.length, body.length - 2));
                 let ip_location = result.data[0].location;
                 resolve(ip_location);
             } else {
                 resolve('ip138 api failed');
             }
-
         });
     });
 }
