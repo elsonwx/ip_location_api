@@ -1,0 +1,5 @@
+node_modules/
+log/*.log
+log/pm2/*.log
+.vscode
+.tern-project

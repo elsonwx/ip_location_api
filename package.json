@@ -1,0 +1,19 @@
+{
+  "name": "ip_location_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "randomstring": "^1.1.5",
+    "request": "^2.81.0",
+    "winston": "^2.3.1"
+  }
+}

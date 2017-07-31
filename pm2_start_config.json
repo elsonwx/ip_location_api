@@ -1,0 +1,11 @@
+[{
+  "name"             : "ip_location_api",
+  "script"           : "./index.js",
+  "error_file"       : "./log/pm2/pm2-err.log",
+  "out_file"         : "./log/pm2/pm2-out.log",
+  "instances"        : "1",
+  "exec_mode"        : "cluster_mode",
+  "env": {
+      "PORT":3001
+  }
+}]
