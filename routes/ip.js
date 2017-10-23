@@ -42,13 +42,12 @@ router.get('/:ip', function(req, res, next) {
 function ipipnet_location(ip) {
     return new Promise((resolve, reject) => {
         request.post({
-            url: 'http://www.ipip.net/ip.html',
+            url: 'https://www.ipip.net/ip.html',
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
-                'Referer': 'http://www.ipip.net/ip.html'
+                'Referer': 'http://www.ipip.net'
             },
             form: {
-                '_verify': randomstring.generate(32),
                 'ip': ip
             }
         }, function(err, res, body) {
