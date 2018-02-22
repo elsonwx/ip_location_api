@@ -5,6 +5,7 @@ const app = express();
 const morgan = require('morgan');
 app.use(morgan('dev'));
 app.use('/ip', require('./routes/ip'));
+app.use('/ipipnet', require('./routes/ipipnet'));
 app.set('port', process.env.PORT || 3000);
 const server = app.listen(app.get('port'), function() {
     logger.debug('server start at port ', app.get('port'));
