@@ -42,4 +42,6 @@ ip地址归属地查询api
 
    http://api.elsonwx.com:3001/ip/1.2.3.4
 
+   http://api.elsonwx.com:3001/ipipnet/1.2.3.4
+
    把 `api.elsonwx.com` 换成 `你的ip或域名` ，把 `3001` 换成 `你设置的监听端口` ，把  `1.2.3.4` 换成 `你要查询的ip地址`
