@@ -54,7 +54,7 @@ function ipipnet_info(ip) {
                 let geo = '';
                 let area = table.find('tr').eq(0).children('td').text().trim();
                 if (table.find('tr').eq(1).children('th').text().trim().indexOf('经纬度') > -1) {
-                    let geo = table.find('tr').eq(1).children('td').text().trim();
+                    geo = table.find('tr').eq(1).children('td').text().trim();
                 } else {
                     row_num = 0;
                 }
