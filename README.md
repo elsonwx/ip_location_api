@@ -52,5 +52,5 @@ ip地址归属地查询api
 
 http://api.elsonwx.com:3001/ipipnet/1.2.3.4
 
-![ipipnet](./screenshot/ipipnet.png)
+![ipipnet](/screenshot/ipipnet.png)
 
