@@ -38,9 +38,17 @@ ip地址归属地查询api
 
 7. 测试访问
 
-   http://api.elsonwx.com:3001/ip/me (查看自己的ip)
+   - ip138
 
-   http://api.elsonwx.com:3001/ip/1.2.3.4
+     http://api.elsonwx.com:3001/ip138/me
+
+     http://api.elsonwx.com:3001/ip138/1.2.3.4
+
+   - ipipnet
+
+     http://api.elsonwx.com:3001/ipipnet/me
+
+     http://api.elsonwx.com:3001/ipipnet/1.2.3.4
 
    把 `api.elsonwx.com` 换成 `你的ip或域名` ，把 `3001` 换成 `你设置的监听端口` ，把  `1.2.3.4` 换成 `你要查询的ip地址`
 
@@ -50,7 +58,7 @@ ip地址归属地查询api
 
 [ipip.net实验室api](https://labs.ipip.net/security/)
 
-http://api.elsonwx.com:3001/ipipnet/1.2.3.4
+http://api.elsonwx.com:3001/ipipnet/lab/1.2.3.4
 
 ![ipipnet](screenshot/ipipnet.png)
 
