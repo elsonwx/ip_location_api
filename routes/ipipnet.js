@@ -3,7 +3,7 @@ const request = require('request');
 const randomstring = require('randomstring');
 const $ = require('cheerio');
 
-router.get('/:ip', function (req, res, next) {
+router.get('/:ip', function(req, res, next) {
     let ip = req.params.ip;
     if (ip == 'me') {
         let req_ip = req.ip;
@@ -47,22 +47,28 @@ function ipipnet_info(ip) {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
                 'Referer': 'http://www.ipip.net'
             }
-        }, function (err, res, body) {
+        }, function(err, res, body) {
             if (!err && res.statusCode == 200) {
                 let table = $(body).find('table.table-bordered');
+                let row_num = 1;
+                let geo = '';
                 let area = table.find('tr').eq(0).children('td').text().trim();
-                let geo = table.find('tr').eq(1).children('td').text().trim();
-                let apptype = table.find('tr').eq(2).children('td').text().trim();
-                let operator = table.find('tr').eq(3).children('td').text().trim();
-                let owner = table.find('tr').eq(4).children('td').text().trim();
-                let current_behavior = table.find('tr').eq(5).children('td').text().trim();
-                let history_behavior = table.find('tr').eq(6).children('td').text().trim();
-                let from = table.find('tr').eq(7).children('td').text().trim();
+                if (table.find('tr').eq(1).children('th').text().trim().indexOf('经纬度') > -1) {
+                    let geo = table.find('tr').eq(1).children('td').text().trim();
+                } else {
+                    row_num = 0;
+                }
+                let app_type = table.find('tr').eq(row_num+1).children('td').text().trim();
+                let operator = table.find('tr').eq(row_num+2).children('td').text().trim();
+                let owner = table.find('tr').eq(row_num+3).children('td').text().trim();
+                let current_behavior = table.find('tr').eq(row_num+4).children('td').text().trim();
+                let history_behavior = table.find('tr').eq(row_num+5).children('td').text().trim();
+                let from = table.find('tr').eq(row_num+7).children('td').text().trim();
                 resolve({
                     ip: ip,
                     area: area,
                     geo: geo,
-                    apptype: apptype,
+                    app_type: app_type,
                     operator: operator,
                     owner: owner,
                     current_behavior: current_behavior,

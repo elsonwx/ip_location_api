@@ -1,6 +1,6 @@
 ip地址归属地查询api
 
-数据来源 [ipip.net](http://www.ipip.net)  [ip138.com](http://ip138.com)
+数据来源 [ipip.net](http://www.ipip.net) 😂😂  [ip138.com](http://ip138.com) 😅😅
 
 ### 用法
 
@@ -42,6 +42,15 @@ ip地址归属地查询api
 
    http://api.elsonwx.com:3001/ip/1.2.3.4
 
-   http://api.elsonwx.com:3001/ipipnet/1.2.3.4
-
    把 `api.elsonwx.com` 换成 `你的ip或域名` ，把 `3001` 换成 `你设置的监听端口` ，把  `1.2.3.4` 换成 `你要查询的ip地址`
+
+
+
+## 更新
+
+[ipip.net实验室api](https://labs.ipip.net/security/)
+
+http://api.elsonwx.com:3001/ipipnet/1.2.3.4
+
+![ipipnet](./screenshot/ipipnet.png)
+
