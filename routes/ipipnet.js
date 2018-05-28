@@ -71,7 +71,7 @@ function ipipnet_location(ip) {
         }, function (err, res, body) {
             if (!err && res.statusCode == 200) {
                 try {
-                    let ip_location = $(body).find('#myself').eq(0).text().trim();
+                    let ip_location = $(body).find('div.inner').eq(1).find('table').eq(0).find('tbody').eq(0).find('tr').eq(2).find('td').eq(1).text();
                     resolve(ip_location);
                 } catch (e) {
                     reject('ipipnet resolve failed');
